@@ -11,6 +11,7 @@ public class ID {
      * Default constructor
      */
     public ID() {
+        int num;
     }
 
     /**
