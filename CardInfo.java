@@ -21,17 +21,17 @@ public class CardInfo {
     /**
      * 
      */
-    public void easeCardInfo;
+    public CashCard easeCardInfo;
 
     /**
      * 
      */
-    public void ipassMoneyInfo;
+    public CashCard ipassMoneyInfo;
 
     /**
      * 
      */
-    public void creditCardInfo;
+    public CreditCard creditCardInfo;
 
     /**
      * @return

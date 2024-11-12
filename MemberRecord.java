@@ -91,7 +91,7 @@ public class MemberRecord {
      */
     public String getName() {
         // TODO implement here
-        return "";
+        return name;
     }
 
     /**
@@ -99,6 +99,7 @@ public class MemberRecord {
      */
     public void setName(String name) {
         // TODO implement here
+        this.name=name;
     }
 
     /**
@@ -106,7 +107,7 @@ public class MemberRecord {
      */
     public String getPhone() {
         // TODO implement here
-        return "";
+        return phone;
     }
 
     /**
@@ -114,6 +115,7 @@ public class MemberRecord {
      */
     public void setPhone(String phone) {
         // TODO implement here
+        this.phone=phone;
     }
 
 }

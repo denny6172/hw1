@@ -16,7 +16,7 @@ public class CardReader {
     /**
      * @return
      */
-    public String readCardNumber() {
+    public String readCardNumber(String cardId) {
         // TODO implement here
         return "";
     }

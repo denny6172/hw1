@@ -45,9 +45,9 @@ public class AccessCenter {
     /**
      * @return
      */
-    public Boolean isMemberInfoCorrect() {
+    public Boolean isMemberInfoCorrect(String name,String phone) {
         // TODO implement here
-        return null;
+        return true;
     }
 
     /**
@@ -56,7 +56,7 @@ public class AccessCenter {
      */
     public Boolean isValidityMember(String cardNumber) {
         // TODO implement here
-        return null;
+        return true;
     }
 
     /**
