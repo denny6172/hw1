@@ -31,32 +31,32 @@ public class Main {
         }
         else if(func==2){
             OperatorReg operatorReg=new OperatorReg();
-            operatorReg.showCardTap();                      //感應悠遊卡
+            operatorReg.showCardTap();                      //顯示感應悠遊卡
             String cr=sc.next();
             if(cr.equals("1")){
+                System.out.println("請手動輸入悠遊卡號碼");
                 cr=sc.next();
-                operatorReg.manualPin(cr);
+                operatorReg.manualPin(cr);              //手動輸入悠遊卡號碼
             }
             else{
                 CardReader cardReader=new CardReader();
-                cardReader.readCardNumber(cr);
+                cardReader.readCardNumber(cr);          //感應悠遊卡號碼
             }
 
+            AccountStation accountStation=new AccountStation();
+            if(accountStation.checkValidityMember(cr)==true){    //確認卡號是否有效
 
-            AccessCenter accessCenter=new AccessCenter();
-            if(accessCenter.isValidityMember(cr)==true){    //確認卡號是否有效
                 operatorReg.showQueryChoise();              //選擇查詢範圍
-                AccountStation accountStation=new AccountStation();
                 int qint= sc.nextInt();
-                if(qint==1){                //一周
-                    //accountStation.queryRentalRecords();
-                }
-                if(qint==2){                //一個月
+                accountStation.queryRentalRecords(cr,qint);     //1是一周 2是一個月 3是半年
 
-                }
-                if(qint==3){                //半年
-
-                }
+                System.out.println("請輸入 1 來進行登出");
+                if(sc.nextInt()==1)
+                    System.out.println("登出完成");
+            }
+            else{
+                System.out.println("無該卡資料或紀錄");
+                operatorReg.callService();
             }
         }
     }

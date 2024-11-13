@@ -24,6 +24,11 @@ public class AccountStation extends Station {
         }
     }
 
+    public Boolean checkValidityMember(String cardnumber){
+        AccessCenter accessCenter=new AccessCenter();
+        return accessCenter.isValidityMember(cardnumber);
+    }
+
     /**
      * @param account
      */
@@ -46,10 +51,12 @@ public class AccountStation extends Station {
     }
 
     /**
-     * @param rocords
+     * @param cardnumber
      */
-    public void queryRentalRecords(AccessCenter rocords) {
+    public void queryRentalRecords(String cardnumber,int qint) {
         // TODO implement here
+        DatabaseConnect databaseConnect=new DatabaseConnect();
+        databaseConnect.showhistory(cardnumber,qint);
     }
 
 }

@@ -75,6 +75,7 @@ public class OperatorReg extends CardReader {
      */
     public void callService() {
         // TODO implement here
+        System.out.println("已向客服進行反應");
     }
 
     /**
@@ -82,7 +83,7 @@ public class OperatorReg extends CardReader {
      */
     public String manualPin(String cardId) {
         // TODO implement here
-        return "";
+        return cardId;
     }
 
 }

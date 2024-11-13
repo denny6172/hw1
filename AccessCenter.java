@@ -61,7 +61,11 @@ public class AccessCenter {
      */
     public Boolean isValidityMember(String cardNumber) {
         // TODO implement here
-        return true;
+        DatabaseConnect databaseConnect=new DatabaseConnect();
+        if(databaseConnect.checkmember(cardNumber)==true)
+            return true;
+        else
+            return false;
     }
 
     /**
