@@ -11,7 +11,7 @@ public class OperatorReg extends CardReader {
      * Default constructor
      */
     public OperatorReg() {
-        System.out.println("請依序輸入會員資料 名字 電話");
+
     }
 
     /**
@@ -19,6 +19,7 @@ public class OperatorReg extends CardReader {
      */
     public void showAddInfo() {
         // TODO implement here
+        System.out.println("請依序輸入 姓名 電話(10碼) 以及 密碼(至多15碼)");
     }
 
     /**

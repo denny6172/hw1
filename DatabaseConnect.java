@@ -7,20 +7,34 @@ import java.util.*;
 
 public class DatabaseConnect {
     public static void main(String[] args) {
-        String dbURL = "jdbc:sqlserver://DESKTOP-D6AAT35\\MSSQLSERVER_2022:1433;encrypt=true;trustServerCertificate=true;DatabaseName=member";
+        String dbURL = "jdbc:sqlserver://140.136.149.167\\MSSQLSERVER_2022:1433;encrypt=true;trustServerCertificate=true;DatabaseName=member";
         String userName="sa";
         String userPwd="alan0819";
-        String sql="select * from member";
+        String sql="select * from memberRecord";
 
         Connection con;
         Statement st;
         ResultSet re;
         try {
             con=DriverManager.getConnection(dbURL,userName,userPwd);
-            System.out.println("yyy");
+            st= con.createStatement();
+            re=st.executeQuery(sql);
+            System.out.println(re);
+            while(re.next()){
+                String mr= re.getString(1);
+                String rd= re.getString(2);
+                String rl= re.getString(3);
+                String td= re.getString(4);
+                String tl= re.getString(5);
+                System.out.println(mr+" "+rd+" "+rl+" "+td+" "+tl);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("fail");
         }
+
+    }
+    public Boolean checkmember(String phone){
+        return false;
     }
 }

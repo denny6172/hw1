@@ -16,8 +16,12 @@ public class AccountStation extends Station {
     /**
      * @param account
      */
-    public void registerAccount(AccessCenter account) {
+    public void registerAccount(String name,String phone,String pwd) {
         // TODO implement here
+        AccessCenter accessCenter=new AccessCenter();
+        if(accessCenter.isMemberInfoCorrect(phone)==true){
+            accessCenter.createMember(name,phone,pwd);
+        }
     }
 
     /**

@@ -10,27 +10,24 @@ public class Main {
             OperatorReg operatorReg=new OperatorReg();
             operatorReg.showAddInfo(); //顯示 輸入會員資料
 
-            //紀錄 姓名電話
-            MemberRecord memberRecord=new MemberRecord();
-            memberRecord.setName(sc.next());
-            memberRecord.setPhone(sc.next());
-
-            //確認資料正確性
-            AccessCenter accessCenter=new AccessCenter();
-            if(accessCenter.isMemberInfoCorrect(memberRecord.getName(),memberRecord.getPhone())==true)
-                operatorReg.showCardTap();
+            //輸入 姓名 電話 密碼
+            AccountStation accountStation=new AccountStation();
+            accountStation.registerAccount(sc.next(), sc.next(), sc.next()); //這裡也會判斷資料正確性
 
             //感應悠遊卡
+            operatorReg.showCardTap();
             String cr=sc.next();
             if(cr.equals("1")){
+                System.out.println("請手動輸入悠遊卡號碼");
                 operatorReg.manualPin(sc.next());
-                System.out.println("1");
             }
             else{
-                CardReader cardReader=new CardReader();
-                cardReader.readCardNumber(cr);
-                System.out.println(cr);
+                //CardReader cardReader=new CardReader();
+                //cardReader.readCardNumber(cr);
             }
+
+            //綁定悠遊卡
+
         }
         else if(func==2){
             OperatorReg operatorReg=new OperatorReg();

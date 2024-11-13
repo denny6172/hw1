@@ -68,7 +68,7 @@ public class MemberRecord {
      */
     public String getPassword() {
         // TODO implement here
-        return "";
+        return password;
     }
 
     /**
@@ -76,6 +76,7 @@ public class MemberRecord {
      */
     public void setPassword(String password) {
         // TODO implement here
+        this.password=password;
     }
 
     /**

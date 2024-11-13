@@ -24,12 +24,16 @@ public class AccessCenter {
     public Set<RentalRecord> records;
 
     /**
-     * @param uid 
+     * @param name
      * @param pwd 
      * @return
      */
-    public int createMember(String uid, String pwd) {
+    public int createMember(String name, String phone, String pwd) {
         // TODO implement here
+        MemberRecord memberRecord=new MemberRecord();
+        memberRecord.setName(name);
+        memberRecord.setPhone(phone);
+        memberRecord.setPassword(pwd);
         return 0;
     }
 
@@ -45,8 +49,9 @@ public class AccessCenter {
     /**
      * @return
      */
-    public Boolean isMemberInfoCorrect(String name,String phone) {
+    public Boolean isMemberInfoCorrect(String phone) {
         // TODO implement here
+        //跟sql判斷有無一樣的phone
         return true;
     }
 
