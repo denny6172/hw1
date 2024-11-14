@@ -28,13 +28,12 @@ public class AccessCenter {
      * @param pwd 
      * @return
      */
-    public int createMember(String name, String phone, String pwd) {
+    public void createMember(String name, String phone, String pwd) {
         // TODO implement here
         MemberRecord memberRecord=new MemberRecord();
         memberRecord.setName(name);
         memberRecord.setPhone(phone);
         memberRecord.setPassword(pwd);
-        return 0;
     }
 
     /**
@@ -85,9 +84,13 @@ public class AccessCenter {
     /**
      * @return
      */
-    public Boolean isAlreadyBind() {
+    public Boolean isAlreadyBind(String cardnumber) {
         // TODO implement here
-        return null;
+        DatabaseConnect databaseConnect=new DatabaseConnect();
+        if(databaseConnect.checkInfo(cardnumber)==true)
+            return true;
+        else
+            return false;
     }
 
     /**

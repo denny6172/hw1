@@ -12,22 +12,34 @@ public class Main {
 
             //輸入 姓名 電話 密碼
             AccountStation accountStation=new AccountStation();
-            accountStation.registerAccount(sc.next(), sc.next(), sc.next()); //這裡也會判斷資料正確性
+            String name=sc.next();
+            String phone=sc.next();
+            String password= sc.next();
+            accountStation.registerAccount(name, phone, password); //這裡也會判斷資料正確性
 
             //感應悠遊卡
             operatorReg.showCardTap();
             String cr=sc.next();
+            String cardnumber;
             if(cr.equals("1")){
                 System.out.println("請手動輸入悠遊卡號碼");
-                operatorReg.manualPin(sc.next());
-            }
+                cardnumber= sc.next();
+                operatorReg.manualPin(cardnumber);
+               }
             else{
-                //CardReader cardReader=new CardReader();
-                //cardReader.readCardNumber(cr);
+                CardReader cardReader=new CardReader();
+                cardnumber= sc.next();
+                cardReader.readCardNumber(cardnumber);
             }
 
             //綁定悠遊卡
-
+            if(accountStation.checkcard(cardnumber)==false){
+                if(sc.nextInt()==1){
+                    //accountStation.cardBinding(cardnumber);
+                    accountStation.cardBinding(name,phone,password,cardnumber);
+                    operatorReg.showCardFinish();
+                }
+            }
         }
         else if(func==2){
             OperatorReg operatorReg=new OperatorReg();
@@ -56,7 +68,9 @@ public class Main {
             }
             else{
                 System.out.println("無該卡資料或紀錄");
-                operatorReg.callService();
+                System.out.println("輸入 1 進行重新操作 , 輸入 2 會向客服進行通報");
+                if(sc.nextInt()==2)
+                    operatorReg.callService();
             }
         }
     }

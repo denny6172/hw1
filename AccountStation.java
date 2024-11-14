@@ -37,12 +37,34 @@ public class AccountStation extends Station {
     }
 
     /**
-     * @param card
+     * @param cardnumber
      */
-    public void cardBinding(AccessCenter card) {
+    public Boolean checkcard(String cardnumber) {
         // TODO implement here
+        AccessCenter accessCenter=new AccessCenter();
+        if(accessCenter.isAlreadyBind(cardnumber)==true){
+            System.out.println("此卡片已綁定過");
+            return true;
+        }
+        else{
+            System.out.println("卡片正確 , 輸入 1 確定綁定");
+            return false;
+        }
     }
 
+//    public void cardBinding(String cardnumber) {
+//        // TODO implement here
+//        DatabaseConnect databaseConnect=new DatabaseConnect();
+//        MemberRecord memberRecord=new MemberRecord();
+//        databaseConnect.insertInfo(memberRecord.getName(),memberRecord.getPhone(),memberRecord.getPassword(),cardnumber);
+//
+//    }
+    public void cardBinding(String name,String phone,String password ,String cardnumber) {
+        // TODO implement here
+        DatabaseConnect databaseConnect=new DatabaseConnect();
+        MemberRecord memberRecord=new MemberRecord();
+        databaseConnect.insertInfo(name,phone,password,cardnumber);
+    }
     /**
      * @param card
      */
