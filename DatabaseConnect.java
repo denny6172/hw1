@@ -123,7 +123,7 @@ public class DatabaseConnect {
                     String rl= re.getString(3);
                     String td= re.getString(4);
                     String tl= re.getString(5);
-                    System.out.println(mr+" "+rd+" "+rl+" "+td+" "+tl);
+                    System.out.println("卡號用戶:"+mr+" 租借:"+rd+" "+rl+" 歸還:"+td+" "+tl);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -142,7 +142,7 @@ public class DatabaseConnect {
                     String rl= re.getString(3);
                     String td= re.getString(4);
                     String tl= re.getString(5);
-                    System.out.println(mr+" "+rd+" "+rl+" "+td+" "+tl);
+                    System.out.println("卡號用戶:"+mr+" 租借:"+rd+" "+rl+" 歸還:"+td+" "+tl);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -161,7 +161,7 @@ public class DatabaseConnect {
                     String rl= re.getString(3);
                     String td= re.getString(4);
                     String tl= re.getString(5);
-                    System.out.println(mr+" "+rd+" "+rl+" "+td+" "+tl);
+                    System.out.println("卡號用戶:"+mr+" 租借:"+rd+" "+rl+" 歸還:"+td+" "+tl);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
