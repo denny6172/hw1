@@ -22,6 +22,16 @@ public class AccountStation extends Station {
         if(accessCenter.isMemberInfoCorrect(phone)==true){
             accessCenter.createMember(name,phone,pwd);
         }
+        else {
+            OperatorReg operatorReg=new OperatorReg();
+            operatorReg.showError();
+            operatorReg.showAddInfo(); //顯示 輸入會員資料
+
+            //輸入 姓名 電話 密碼
+            AccountStation accountStation=new AccountStation();
+            Scanner sc = new Scanner(System.in);
+            accountStation.registerAccount(sc.next(), sc.next(),sc.next()); //這裡也會判斷資料正確性
+        }
     }
 
     public Boolean checkValidityMember(String cardnumber){
@@ -47,7 +57,8 @@ public class AccountStation extends Station {
             return true;
         }
         else{
-            System.out.println("卡片正確 , 輸入 1 確定綁定");
+            OperatorReg operatorReg=new OperatorReg();
+            operatorReg.showBindOrNot();
             return false;
         }
     }

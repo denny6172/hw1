@@ -27,6 +27,7 @@ public class OperatorReg extends CardReader {
      */
     public void showError() {
         // TODO implement here
+        System.out.println("資料錯誤或會員已註冊");
     }
 
     /**
@@ -67,7 +68,7 @@ public class OperatorReg extends CardReader {
      */
     public void showBindOrNot() {
         // TODO implement here
-        System.out.println("卡片正確 , 確認是否綁定");
+        System.out.println("卡片正確 , 輸入 1 確定綁定");
     }
 
     /**
