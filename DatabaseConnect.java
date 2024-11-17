@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 
 public class DatabaseConnect {
@@ -145,10 +146,10 @@ public class DatabaseConnect {
                 String createTableQuery = "CREATE TABLE " + DB_RENTAL + " (" +
                         "cardNumber VARCHAR(10) NOT NULL, " +
                         "inLease BIT NOT NULL DEFAULT 1, " +
-                        "rentalDate DATE NOT NULL, " +
+                        "rentalDate VARCHAR(20) NOT NULL, " +
                         "rentalStationNum INT NOT NULL, " +
                         "rentalStationPos VARCHAR(20) NOT NULL , " +
-                        "returnDate DATE, " +
+                        "returnDate VARCHAR(20), " +
                         "returnStationNum INT, " +
                         "returnStationPos VARCHAR(20))";
                 try (Statement st = conn.createStatement()) {
@@ -251,15 +252,17 @@ public class DatabaseConnect {
     }
 
     public static void insertRental(String cardNumber, int stationNum, String stationPos) {
-        //Timestamp now = new Timestamp(System.currentTimeMillis());
-        Date now = new java.sql.Date(System.currentTimeMillis());
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //Date date = new java.sql.Date(System.currentTimeMillis());
         String insQuery = "INSERT INTO " + DB_RENTAL + " (cardNumber, rentalDate, rentalStationNum, rentalStationPos) " +
                         "VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_UID, DB_PWD)) {
             PreparedStatement pstmt = conn.prepareStatement(insQuery);
             pstmt.setString(1, cardNumber);
-            pstmt.setDate(2, now);
+            //pstmt.setDate(2, date);
+            pstmt.setString(2, sdf.format(now));
             pstmt.setInt(3, stationNum);
             pstmt.setString(4, stationPos);
 
@@ -272,8 +275,9 @@ public class DatabaseConnect {
     }
 
     public static void updateReturn(String cardNumber, int stationNum, String stationPos) {
-        //Timestamp now = new Timestamp(System.currentTimeMillis());
-        Date now = new Date(System.currentTimeMillis());
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //Date now = new Date(System.currentTimeMillis());
         String selQuery = "SELECT * FROM " + DB_RENTAL +
                         " WHERE cardNumber = '" + cardNumber + "' AND inLease = 1";
 
@@ -290,7 +294,7 @@ public class DatabaseConnect {
 
                 try (PreparedStatement pstmt = conn.prepareStatement(updateQuery)) {
                     //
-                    pstmt.setDate(1, now);
+                    pstmt.setString(1, sdf.format(now));
                     pstmt.setInt(2, stationNum);
                     pstmt.setString(3, stationPos);
                     //

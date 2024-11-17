@@ -13,7 +13,7 @@ public class Main_Rental {
 
         System.out.println("預設條件：請優先預設BIKE車號及地點  <空白分隔>");
         int bikeNum = sc.nextInt();
-        String location = sc.nextLine();
+        String location = sc.nextLine().strip();
         rentalStation.setNumber(bikeNum);
         rentalStation.setLocation(location);
 
