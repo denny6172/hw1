@@ -18,9 +18,10 @@ public class CardReader {
     /**
      * @return
      */
-    public String readCardNumber(String cardId) {
+    public String readCardNumber() {
         // TODO implement here
-        return cardId;
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
     /**

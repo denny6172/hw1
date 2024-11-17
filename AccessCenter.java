@@ -18,12 +18,12 @@ public class AccessCenter {
     /**
      * 
      */
-    public Set<MemberRecord> member;
+    //public Set<MemberRecord> member;
 
     /**
      * 
      */
-    public Set<RentalRecord> records;
+    //public Set<RentalRecord> records;
 
     /**
      * @param name
@@ -32,19 +32,20 @@ public class AccessCenter {
      */
     public void createMember(String name, String phone, String pwd) {
         // TODO implement here
-        MemberRecord memberRecord=new MemberRecord();
-        memberRecord.setName(name);
-        memberRecord.setPhone(phone);
-        memberRecord.setPassword(pwd);
+        //MemberRecord memberRecord = new MemberRecord();
+        //memberRecord.setName(name);
+        //memberRecord.setPhone(phone);
+        //memberRecord.setPassword(pwd);
+        db.insertMember(name, phone, pwd);
     }
 
     /**
      * @param uid 
      * @return
      */
-    public int removeMember(String uid) {
+    public boolean removeMember(String uid, String pwd) {
         // TODO implement here
-        return 0;
+        return db.removeMember(uid, pwd);
     }
 
     /**
@@ -62,8 +63,8 @@ public class AccessCenter {
      */
     public boolean isValidityMember(String cardNumber) {
         // TODO implement here
-        DatabaseConnect databaseConnect=new DatabaseConnect();
-        if(databaseConnect.checkMember(cardNumber)==true)
+        //DatabaseConnect databaseConnect=new DatabaseConnect();
+        if(db.checkMember(cardNumber) == true)
             return true;
         else
             return false;
@@ -72,15 +73,17 @@ public class AccessCenter {
     /**
      * @param cardInfo
      */
-    public void bindingCard(CardInfo cardInfo) {
+    public void bindingCard(String name, String card) {
         // TODO implement here
+        db.updateCardNum(name, card);
     }
 
     /**
      * @param cardInfo
      */
-    public void unbindCard(CardInfo cardInfo) {
+    public void unbindCard(String name) {
         // TODO implement here
+        db.updateCardNum(name, null);
     }
 
     /**

@@ -40,17 +40,7 @@ public class MemberRecord {
      */
     private String phone;
 
-    /**
-     * 
-     */
-    public IDInfo idInfo;
-
-    /**
-     * 
-     */
-    public CardInfo cardInfo;
-
-    /**
+     /**
      * @return
      */
     public String getMemberID() {
@@ -79,15 +69,15 @@ public class MemberRecord {
      */
     public void setPassword(String password) {
         // TODO implement here
-        this.password=password;
+        this.password = password;
     }
 
     /**
      * @return
      */
-    public Boolean isValidity() {
+    public boolean isValidity() {
         // TODO implement here
-        return null;
+        return true;
     }
 
     /**
@@ -103,7 +93,7 @@ public class MemberRecord {
      */
     public void setName(String name) {
         // TODO implement here
-        this.name=name;
+        this.name = name;
     }
 
     /**
@@ -119,7 +109,7 @@ public class MemberRecord {
      */
     public void setPhone(String phone) {
         // TODO implement here
-        this.phone=phone;
+        this.phone = phone;
     }
 
 }

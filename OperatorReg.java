@@ -19,9 +19,16 @@ public class OperatorReg extends CardReader {
     /**
      * 
      */
-    public void showAddInfo() {
+    public void showAddInfo(int type) {
         // TODO implement here
-        System.out.println("請依序輸入 姓名 電話(10碼) 以及 密碼(至多15碼)");
+        if (type == 0)
+            System.out.println("請依序輸入 姓名 電話(10碼) 以及 密碼(至多15碼)");
+        else if (type == 1)
+            System.out.println("請輸入 姓名");
+        else if (type == 2)
+            System.out.println("請依序輸入 姓名 以及 密碼(至多15碼)");
+        else if (type == 3)
+            System.out.println("請依序輸入 姓名 以及 卡號(至多15碼)");
     }
 
     /**
@@ -37,7 +44,8 @@ public class OperatorReg extends CardReader {
      */
     public void showCardTap() {
         // TODO implement here
-        System.out.println("請感應悠遊卡 若無法感應,請輸入 1 改為手動輸入");
+        //System.out.println("請感應悠遊卡 若無法感應,請輸入 1 改為手動輸入");
+        System.out.println("情境提示：請將卡片放置於感應區感應  <手動輸入卡號>");
     }
 
     /**
@@ -84,9 +92,11 @@ public class OperatorReg extends CardReader {
     /**
      * @return
      */
-    public String manualPin(String cardId) {
+    public String manualPin() {
         // TODO implement here
-        return cardId;
+        System.out.println("請手動輸入悠遊卡號碼");
+        Scanner scan = new Scanner(System.in);
+        return scan.nextLine();
     }
 
 }

@@ -6,29 +6,28 @@ public class Main_Rental {
     public static String location = "輔仁";
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         RentalStation rentalStation = new RentalStation(location);
 
         System.out.println("<<<  Rental 租借  >>>");
 
         System.out.println("預設條件：請優先預設BIKE車號及地點  <空白分隔>");
-        int bikeNum = sc.nextInt();
-        String location = sc.nextLine().strip();
+        int bikeNum = scan.nextInt();
+        String location = scan.nextLine().strip();
         rentalStation.setNumber(bikeNum);
         rentalStation.setLocation(location);
 
-
-        System.out.println("謝謝!  BIKE車號：" + bikeNum + ", 地點：" + location + "\n");
+        System.out.println("謝謝!  BIKE：" + bikeNum + ", 地點：" + location + "\n");
 
         System.out.println("情境提示：按下[啟動靠卡]按鈕  <ENTER>");
-        sc.nextLine();
+        scan.nextLine();
         rentalStation.operatorRent.rentalButton();
 
         rentalStation.operatorRent.showTapCard(0);
         System.out.println("情境提示：將卡片放置於感應區感應  <手動輸入卡號>");
-        String cardNumber = sc.nextLine();
-        rentalStation.operatorRent.readCardNumber(cardNumber);
-
+        //String cardNumber = sc.nextLine();
+        //rentalStation.operatorRent.readCardNumber(cardNumber);
+        String cardNumber = rentalStation.operatorRent.readCardNumber();
         //
         if (rentalStation.accessCenter.isAlreadyBind(cardNumber)) {
             if (!rentalStation.accessCenter.isAlreadyRental(cardNumber)) {
@@ -36,7 +35,7 @@ public class Main_Rental {
                 rentalStation.operatorRent.standUnlock();
                 rentalStation.operatorRent.showTakeBike();
                 System.out.println("情境提示：取車, 請以<ENTER>模擬");
-                sc.nextLine();
+                scan.nextLine();
                 rentalStation.showRentResult(rentalStation.RC_RENTAL_SUCCESS);
             }
             else {
@@ -48,7 +47,7 @@ public class Main_Rental {
         }
 
         // for debug
-        DatabaseConnect db = new DatabaseConnect();
-        db.dumpDBTable();
+        System.out.println("\n< DATABASE >");
+        rentalStation.accessCenter.db.dumpDBTable();
     }
 }

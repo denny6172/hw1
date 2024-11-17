@@ -8,10 +8,17 @@ import java.util.*;
  */
 public class AccountStation extends Station {
 
+    public OperatorReg operatorReg = new OperatorReg();
+    public AccessCenter accessCenter = new AccessCenter();
+
     /**
      * Default constructor
      */
-    public AccountStation() {
+    public AccountStation(String location) {
+        // 實驗性質, number 使用隨機方式產生.
+        Random rand = new Random();
+        setNumber(rand.nextInt(1000) + 1);
+        setLocation(location);
     }
 
     /**
@@ -19,69 +26,58 @@ public class AccountStation extends Station {
      */
     public void registerAccount(String name,String phone,String pwd) {
         // TODO implement here
-        AccessCenter accessCenter=new AccessCenter();
-        if(accessCenter.isMemberInfoCorrect(phone)==true){
-            accessCenter.createMember(name,phone,pwd);
+        Scanner scan = new Scanner(System.in);
+
+        if(accessCenter.isMemberInfoCorrect(phone) == true){
+            accessCenter.createMember(name, phone, pwd);
         }
         else {
-            OperatorReg operatorReg=new OperatorReg();
             operatorReg.showError();
-            operatorReg.showAddInfo(); //顯示 輸入會員資料
+            operatorReg.showAddInfo(0); //顯示 輸入會員資料
 
             //輸入 姓名 電話 密碼
-            AccountStation accountStation=new AccountStation();
-            Scanner sc = new Scanner(System.in);
-            accountStation.registerAccount(sc.next(), sc.next(),sc.next()); //這裡也會判斷資料正確性
+            registerAccount(scan.next(), scan.next(), scan.next()); //這裡也會判斷資料正確性
         }
     }
 
-    public Boolean checkValidityMember(String cardnumber){
-        AccessCenter accessCenter=new AccessCenter();
-        return accessCenter.isValidityMember(cardnumber);
+    public boolean checkValidityMember(String cardNumber){
+         return accessCenter.isValidityMember(cardNumber);
     }
 
     /**
      * @param account
      */
-    public void unregisterAccount(AccessCenter account) {
+    public void unregisterAccount(String account, String password) {
         // TODO implement here
+        if (!accessCenter.removeMember(account, password))
+            System.out.println("Account unregistered failed.");
     }
 
     /**
      * @param cardnumber
      */
-    public Boolean checkcard(String cardnumber) {
+    public boolean checkCard(String cardNumber) {
         // TODO implement here
-        AccessCenter accessCenter=new AccessCenter();
-        if(accessCenter.isAlreadyBind(cardnumber)==true){
+        if(accessCenter.isAlreadyBind(cardNumber)==true){
             System.out.println("此卡片已綁定過");
             return true;
         }
         else{
-            OperatorReg operatorReg=new OperatorReg();
             operatorReg.showBindOrNot();
             return false;
         }
     }
 
-//    public void cardBinding(String cardnumber) {
-//        // TODO implement here
-//        DatabaseConnect databaseConnect=new DatabaseConnect();
-//        MemberRecord memberRecord=new MemberRecord();
-//        databaseConnect.insertInfo(memberRecord.getName(),memberRecord.getPhone(),memberRecord.getPassword(),cardnumber);
-//
-//    }
-    public void cardBinding(String name,String phone,String password ,String cardnumber) {
+    public void cardBinding(String name,String cardNumber) {
         // TODO implement here
-        DatabaseConnect databaseConnect=new DatabaseConnect();
-        MemberRecord memberRecord=new MemberRecord();
-        databaseConnect.insertInfo(name,phone,password,cardnumber);
+        accessCenter.bindingCard(name, cardNumber);
     }
     /**
      * @param card
      */
-    public void cardUnbind(AccessCenter card) {
+    public void cardUnbind(String name) {
         // TODO implement here
+        accessCenter.unbindCard(name);
     }
 
     /**
@@ -89,8 +85,7 @@ public class AccountStation extends Station {
      */
     public void queryRentalRecords(String cardnumber,int qint) {
         // TODO implement here
-        DatabaseConnect databaseConnect=new DatabaseConnect();
-        databaseConnect.showHistory(cardnumber,qint);
+        accessCenter.db.showRentHistory(cardnumber,qint);
     }
 
 }

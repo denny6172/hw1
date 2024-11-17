@@ -5,27 +5,27 @@ public class Main_Return {
     public static String location = "輔仁";
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         RentalStation rentalStation = new RentalStation(location);
 
         System.out.println("<<<  Return 歸還  >>>");
 
         System.out.println("預設條件：請優先預設BIKE車號及地點  <空白分隔>");
-        int bikeNum = sc.nextInt();
-        String location = sc.nextLine().strip();
+        int bikeNum = scan.nextInt();
+        String location = scan.nextLine().strip();
         rentalStation.setNumber(bikeNum);
         rentalStation.setLocation(location);
 
-        System.out.println("謝謝!  BIKE車號：" + bikeNum + ", 地點：" + location + "\n");
+        System.out.println("謝謝!  BIKE：" + bikeNum + ", 地點：" + location + "\n");
 
         System.out.println("情境提示：將車推進停車卡槽  請以<ENTER>模擬");
-        sc.nextLine();
+        scan.nextLine();
         rentalStation.operatorRent.isBikeExist();
 
         rentalStation.operatorRent.showTapCard(1);
         System.out.println("情境提示：將卡片放置於感應區感應  <手動輸入卡號>");
-        String cardNumber = sc.nextLine();
-        rentalStation.operatorRent.readCardNumber(cardNumber);
+        //String cardNumber = sc.nextLine();
+        String cardNumber = rentalStation.operatorRent.readCardNumber();
 
         //
         if (rentalStation.accessCenter.isAlreadyBind(cardNumber)) {
@@ -45,7 +45,7 @@ public class Main_Return {
         }
 
         // for debug
-        DatabaseConnect db = new DatabaseConnect();
-        db.dumpDBTable();
+        System.out.println("\n< DATABASE >");
+        rentalStation.accessCenter.db.dumpDBTable();
     }
 }
