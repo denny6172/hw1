@@ -1,7 +1,6 @@
 /* 413226087 李柏翰 */
 /* 413085043 謝慶章 */
 
-import java.io.*;
 import java.util.*;
 
 /**
@@ -9,6 +8,7 @@ import java.util.*;
  */
 public class AccessCenter {
 
+    public DatabaseConnect db = new DatabaseConnect();
     /**
      * Default constructor
      */
@@ -50,7 +50,7 @@ public class AccessCenter {
     /**
      * @return
      */
-    public Boolean isMemberInfoCorrect(String phone) {
+    public boolean isMemberInfoCorrect(String phone) {
         // TODO implement here
         //跟sql判斷有無一樣的phone
         return true;
@@ -60,10 +60,10 @@ public class AccessCenter {
      * @param cardNumber 
      * @return
      */
-    public Boolean isValidityMember(String cardNumber) {
+    public boolean isValidityMember(String cardNumber) {
         // TODO implement here
         DatabaseConnect databaseConnect=new DatabaseConnect();
-        if(databaseConnect.checkmember(cardNumber)==true)
+        if(databaseConnect.checkMember(cardNumber)==true)
             return true;
         else
             return false;
@@ -86,10 +86,10 @@ public class AccessCenter {
     /**
      * @return
      */
-    public Boolean isAlreadyBind(String cardnumber) {
+    public boolean isAlreadyBind(String cardNumber) {
         // TODO implement here
-        DatabaseConnect databaseConnect=new DatabaseConnect();
-        if(databaseConnect.checkInfo(cardnumber)==true)
+        DatabaseConnect databaseConnect = new DatabaseConnect();
+        if (databaseConnect.checkInfo(cardNumber) == true)
             return true;
         else
             return false;
@@ -100,8 +100,9 @@ public class AccessCenter {
      * @param rentTime 
      * @param rentLocaton
      */
-    public void rentalBike(String cardNumber, Date rentTime, String rentLocaton) {
+    public void rentalBike(String cardNumber, int bikeNum, String location) {
         // TODO implement here
+        db.insertRental(cardNumber, bikeNum, location);
     }
 
     /**
@@ -110,17 +111,23 @@ public class AccessCenter {
      * @param rentLocation 
      * @param rentRecord
      */
-    public void returnBike(String cardNumber, Date rentTime, String rentLocation, RentalRecord rentRecord) {
+    public void returnBike(String cardNumber, int bikeNum, String location) {
         // TODO implement here
+        db.updateReturn(cardNumber, bikeNum, location);
     }
 
     /**
      * @param cardNumber 
      * @return
      */
-    public Boolean isAlreadyRental(String cardNumber) {
+    public boolean isAlreadyRental(String cardNumber) {
         // TODO implement here
-        return null;
+        //DatabaseConnect databaseConnect = new DatabaseConnect();
+        //if (databaseConnect.checkRentState(cardNumber))
+        if (db.checkRentState(cardNumber))
+            return true;
+        else
+            return false;
     }
 
     /**

@@ -15,6 +15,11 @@ public class Station {
     public Station() {
     }
 
+    public Station(int number, String location) {
+        this.number = number;
+        this.location = location;
+    }
+
     /**
      * 
      */
@@ -30,7 +35,7 @@ public class Station {
      */
     public int getNumber() {
         // TODO implement here
-        return 0;
+        return this.number;
     }
 
     /**
@@ -38,6 +43,7 @@ public class Station {
      */
     public void setNumber(int number) {
         // TODO implement here
+        this.number = number;
     }
 
     /**
@@ -45,14 +51,15 @@ public class Station {
      */
     public String getLocation() {
         // TODO implement here
-        return "";
+        return this.location;
     }
 
     /**
      * @param location
      */
-    public void setLocatiopn(String location) {
+    public void setLocation(String location) {
         // TODO implement here
+        this.location = location;
     }
 
 }

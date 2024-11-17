@@ -1,7 +1,6 @@
 /* 413226087 李柏翰 */
 /* 413085043 謝慶章 */
 
-import java.io.*;
 import java.util.*;
 
 /**
@@ -91,7 +90,7 @@ public class AccountStation extends Station {
     public void queryRentalRecords(String cardnumber,int qint) {
         // TODO implement here
         DatabaseConnect databaseConnect=new DatabaseConnect();
-        databaseConnect.showhistory(cardnumber,qint);
+        databaseConnect.showHistory(cardnumber,qint);
     }
 
 }

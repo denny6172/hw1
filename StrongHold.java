@@ -18,7 +18,7 @@ public class StrongHold {
     /**
      * 
      */
-    private Date time;
+    private Date date;
 
     /**
      * 
@@ -30,14 +30,15 @@ public class StrongHold {
      */
     public Date getTime() {
         // TODO implement here
-        return null;
+        return this.date;
     }
 
     /**
-     * @param time
+     * @param date
      */
-    public void setTime(Date time) {
+    public void setTime(Date date) {
         // TODO implement here
+        this.date = date;
     }
 
     /**
@@ -45,7 +46,7 @@ public class StrongHold {
      */
     public String getLocation() {
         // TODO implement here
-        return "";
+        return this.location;
     }
 
     /**
@@ -53,6 +54,7 @@ public class StrongHold {
      */
     public void setLocation(String location) {
         // TODO implement here
+        this.location = location;
     }
 
 }

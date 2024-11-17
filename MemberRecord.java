@@ -55,7 +55,7 @@ public class MemberRecord {
      */
     public String getMemberID() {
         // TODO implement here
-        return "";
+        return this.menberID;
     }
 
     /**
@@ -63,6 +63,7 @@ public class MemberRecord {
      */
     public void setMemberID(String memberID) {
         // TODO implement here
+        this.menberID = memberID;
     }
 
     /**
