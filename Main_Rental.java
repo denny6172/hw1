@@ -31,8 +31,11 @@ public class Main_Rental {
         //
         if (rentalStation.accessCenter.isAlreadyBind(cardNumber)) {
             if (!rentalStation.accessCenter.isAlreadyRental(cardNumber)) {
+                Sensor sensor=new Sensor();
+                Command sensoron =new SensorOnCom(sensor);
                 rentalStation.rentalBike(cardNumber);
-                rentalStation.operatorRent.standUnlock();
+                rentalStation.operatorRent.setCommand(sensoron);
+                rentalStation.operatorRent.usebike();
                 rentalStation.operatorRent.showTakeBike();
                 System.out.println("情境提示：取車, 請以<ENTER>模擬");
                 scan.nextLine();

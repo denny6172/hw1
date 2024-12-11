@@ -8,7 +8,7 @@ import java.util.*;
  * 
  */
 public class OperatorRent extends CardReader {
-
+    private Command command;
     private int bikeNumber;
     /**
      * Default constructor
@@ -94,5 +94,13 @@ public class OperatorRent extends CardReader {
     public void showCardFail() {
         // TODO implement here
     }
-
+    /**
+     *
+     */
+    public void setCommand(Command command){
+        this.command=command;
+    }
+    public void usebike(){
+        command.execute();
+    }
 }

@@ -20,7 +20,10 @@ public class Main_Return {
 
         System.out.println("情境提示：將車推進停車卡槽  請以<ENTER>模擬");
         scan.nextLine();
-        rentalStation.operatorRent.isBikeExist();
+        Sensor sensor=new Sensor();
+        Command sensoroff =new SensorOffCom(sensor);
+        rentalStation.operatorRent.setCommand(sensoroff);
+        rentalStation.operatorRent.usebike();
 
         rentalStation.operatorRent.showTapCard(1);
         System.out.println("情境提示：將卡片放置於感應區感應  <手動輸入卡號>");
