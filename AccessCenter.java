@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * 
  */
-public class AccessCenter {
+public class AccessCenter implements Bool{
 
     public DatabaseConnect db = new DatabaseConnect();
     /**
@@ -45,7 +45,11 @@ public class AccessCenter {
      */
     public boolean removeMember(String uid, String pwd) {
         // TODO implement here
-        return db.removeMember(uid, pwd);
+        //return db.removeMember(uid, pwd);
+        /**
+         Body   處理非判斷的動作
+         **/
+        return true;
     }
 
     /**
@@ -54,6 +58,9 @@ public class AccessCenter {
     public boolean isMemberInfoCorrect(String phone) {
         // TODO implement here
         //跟sql判斷有無一樣的phone
+        /**
+         Body   處理非判斷的動作
+         **/
         return true;
     }
 
@@ -64,10 +71,14 @@ public class AccessCenter {
     public boolean isValidityMember(String cardNumber) {
         // TODO implement here
         //DatabaseConnect databaseConnect=new DatabaseConnect();
-        if(db.checkMember(cardNumber) == true)
-            return true;
-        else
-            return false;
+//        if(db.checkMember(cardNumber) == true)
+//            return true;
+//        else
+//            return false;
+        /**
+         Body 處理非判斷的動作
+         **/
+        return true;
     }
 
     /**
@@ -91,11 +102,15 @@ public class AccessCenter {
      */
     public boolean isAlreadyBind(String cardNumber) {
         // TODO implement here
-        DatabaseConnect databaseConnect = new DatabaseConnect();
-        if (databaseConnect.checkInfo(cardNumber) == true)
-            return true;
-        else
-            return false;
+//        DatabaseConnect databaseConnect = new DatabaseConnect();
+//        if (databaseConnect.checkInfo(cardNumber) == true)
+//            return true;
+//        else
+//            return false;
+        /**
+         Body   處理非判斷的動作
+         **/
+        return true;
     }
 
     /**
@@ -127,10 +142,14 @@ public class AccessCenter {
         // TODO implement here
         //DatabaseConnect databaseConnect = new DatabaseConnect();
         //if (databaseConnect.checkRentState(cardNumber))
-        if (db.checkRentState(cardNumber))
-            return true;
-        else
-            return false;
+//        if (db.checkRentState(cardNumber))
+//            return true;
+//        else
+//            return false;
+        /**
+         Body 處理非判斷的動作
+         **/
+        return true;
     }
 
     /**

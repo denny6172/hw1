@@ -477,6 +477,7 @@ public class DatabaseConnect {
      * @param cardNumber
      * @param qint
      */
+    //顯示租借紀錄
     public static void showRentHistory(String cardNumber, int qint) {
         String member = null;
         String query = "SELECT * FROM " + DB_MEMBER + " WHERE cardNumber = '" + cardNumber + "'";

@@ -10,6 +10,7 @@ public class AccountStation extends Station {
 
     public OperatorReg operatorReg = new OperatorReg();
     public AccessCenter accessCenter = new AccessCenter();
+    public AccessCenterProxy accessCenterproxy = new AccessCenterProxy();
 
     /**
      * Default constructor
@@ -28,7 +29,7 @@ public class AccountStation extends Station {
         // TODO implement here
         Scanner scan = new Scanner(System.in);
 
-        if(accessCenter.isMemberInfoCorrect(phone) == true){
+        if(accessCenterproxy .isMemberInfoCorrect(phone) == true){
             accessCenter.createMember(name, phone, pwd);
         }
         else {
@@ -41,7 +42,7 @@ public class AccountStation extends Station {
     }
 
     public boolean checkValidityMember(String cardNumber){
-         return accessCenter.isValidityMember(cardNumber);
+         return accessCenterproxy .isValidityMember(cardNumber); //判斷會員資格是否存在
     }
 
     /**
@@ -49,7 +50,7 @@ public class AccountStation extends Station {
      */
     public void unregisterAccount(String account, String password) {
         // TODO implement here
-        if (!accessCenter.removeMember(account, password))
+        if (!accessCenterproxy .removeMember(account, password))
             System.out.println("Account unregistered failed.");
     }
 
@@ -58,7 +59,7 @@ public class AccountStation extends Station {
      */
     public boolean checkCard(String cardNumber) {
         // TODO implement here
-        if(accessCenter.isAlreadyBind(cardNumber)==true){
+        if(accessCenterproxy .isAlreadyBind(cardNumber)==true){     //判斷卡片是否綁定過
             System.out.println("此卡片已綁定過");
             return true;
         }
@@ -70,7 +71,7 @@ public class AccountStation extends Station {
 
     public void cardBinding(String name,String cardNumber) {
         // TODO implement here
-        accessCenter.bindingCard(name, cardNumber);
+        accessCenter.bindingCard(name, cardNumber);     //綁定卡片
     }
     /**
      * @param card
@@ -85,7 +86,7 @@ public class AccountStation extends Station {
      */
     public void queryRentalRecords(String cardnumber,int qint) {
         // TODO implement here
-        accessCenter.db.showRentHistory(cardnumber,qint);
+        accessCenter.db.showRentHistory(cardnumber,qint);   //顯示租借紀錄
     }
 
 }

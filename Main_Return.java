@@ -1,3 +1,6 @@
+/* 413226087 李柏翰 */
+/* 413085043 謝慶章 */
+
 import java.util.Scanner;
 
 public class Main_Return {
@@ -13,8 +16,8 @@ public class Main_Return {
         System.out.println("預設條件：請優先預設BIKE車號及地點  <空白分隔>");
         int bikeNum = scan.nextInt();
         String location = scan.nextLine().strip();
-        rentalStation.setNumber(bikeNum);
-        rentalStation.setLocation(location);
+        rentalStation.setNumber(bikeNum);       //預設車號
+        rentalStation.setLocation(location);    //預設地點
 
         System.out.println("謝謝!  BIKE：" + bikeNum + ", 地點：" + location + "\n");
 
@@ -23,7 +26,7 @@ public class Main_Return {
         Sensor sensor=new Sensor();
         Command sensoroff =new SensorOffCom(sensor);
         rentalStation.operatorRent.setCommand(sensoroff);
-        rentalStation.operatorRent.usebike();
+        rentalStation.operatorRent.usebike();   //用command來關閉租車控制
 
         rentalStation.operatorRent.showTapCard(1);
         System.out.println("情境提示：將卡片放置於感應區感應  <手動輸入卡號>");
@@ -31,14 +34,14 @@ public class Main_Return {
         String cardNumber = rentalStation.operatorRent.readCardNumber();
 
         //
-        if (rentalStation.accessCenter.isAlreadyBind(cardNumber)) {
-            if (rentalStation.accessCenter.isAlreadyRental(cardNumber)) {
+        if (rentalStation.accessCenterproxy.isAlreadyBind(cardNumber)) {    //判斷卡片是否綁定過
+            if (rentalStation.accessCenterproxy.isAlreadyRental(cardNumber)) {      //判斷是否有租借資格
                 rentalStation.returnBike(cardNumber);
-                rentalStation.showRentResult(rentalStation.RC_RETURN_SUCCESS);
+                rentalStation.showRentResult(rentalStation.RC_RETURN_SUCCESS);  //還車成功
             }
             else {
                 rentalStation.operatorRent.standUnlock();
-                rentalStation.showRentResult(rentalStation.RC_RENT_NOT_YET);
+                rentalStation.showRentResult(rentalStation.RC_RENT_NOT_YET);    //這卡片無租的紀錄
                 rentalStation.showRentResult(rentalStation.RC_DISCARD_RETURN);
             }
         }

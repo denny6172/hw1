@@ -11,6 +11,7 @@ public class RentalStation extends Station {
 
     public OperatorRent operatorRent = new OperatorRent();
     public AccessCenter accessCenter = new AccessCenter();
+    public AccessCenterProxy accessCenterproxy = new AccessCenterProxy();
 
     public final int RC_RENTAL_SUCCESS = 0;
     public final int RC_RETURN_SUCCESS = 1;
