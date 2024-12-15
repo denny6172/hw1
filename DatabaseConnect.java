@@ -507,8 +507,6 @@ public class DatabaseConnect {
             query += " AND datediff(d,rentalTime,getdate())<" + days;
         //System.out.println(query);
 
-
-
         try {
             Connection conn = DriverManager.getConnection(DB_URL, DB_UID, DB_PWD);
             Statement stmt = conn.createStatement();
@@ -527,5 +525,94 @@ public class DatabaseConnect {
             e.printStackTrace();
             System.out.println("fail");
         }
+    }
+
+    /**
+     *
+     * @param cardNumber
+     * @param qint
+     * @return
+     */
+    public static Object[][] getRentHistory(String cardNumber, int qint) {
+        Object[][] data = null;
+        String member = null;
+        String query;
+        int rows = 0;
+        int days = 0;
+
+        if (qint == 1)
+            days = 7;
+        else if (qint == 2)
+            days = 30;
+        else if (qint == 3)
+            days = 180;
+
+        query = "SELECT * FROM " + DB_MEMBER + " WHERE cardNumber = '" + cardNumber + "'";
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_UID, DB_PWD);
+            Statement stmt = conn.createStatement();
+            ResultSet rsts = stmt.executeQuery(query);
+            if (rsts.next()) {
+                member = rsts.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        query = "SELECT COUNT(*) FROM " + DB_RENTAL + " WHERE cardNumber='" + cardNumber + "'";
+        if (days > 0) query += " AND datediff(d,rentalTime,getdate())<" + days;
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_UID, DB_PWD);
+            Statement stmt = conn.createStatement();
+            ResultSet rsts = stmt.executeQuery(query);
+            rsts.next();
+            rows  = rsts.getInt(1);
+            //System.out.println("rows " + rows);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (rows > 0) {
+            data = new Object[rows][8];
+            rows = 0;
+
+            query = "SELECT * FROM " + DB_RENTAL + " WHERE cardNumber = '" + cardNumber + "'";
+            if (days > 0) query += " AND datediff(d,rentalTime,getdate())<" + days;
+
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, DB_UID, DB_PWD);
+                Statement stmt = conn.createStatement();
+                ResultSet rsts = stmt.executeQuery(query);
+
+                while (rsts.next()) {
+                    String sTemp;
+
+                    data[rows][0] = member;
+                    sTemp = rsts.getString(1);          //cardNumber
+                    data[rows][1] = sTemp == null ? "" : sTemp;
+                    sTemp = rsts.getString(3);          //rentalTime
+                    data[rows][2] = sTemp == null ? "" : sTemp;
+                    sTemp = rsts.getString(4);          //rentalStationNum
+                    data[rows][3] = sTemp == null ? "" : sTemp;
+                    sTemp = rsts.getString(5);          //rentalStationPos
+                    data[rows][4] = sTemp == null ? "" : sTemp;
+                    sTemp = rsts.getString(6);          //returnTime
+                    data[rows][5] = sTemp == null ? "" : sTemp;
+                    sTemp = rsts.getString(7);          //returnStationNum
+                    data[rows][6] = sTemp == null ? "" : sTemp;
+                    sTemp = rsts.getString(8);          //returnStationPos
+                    data[rows][7] = sTemp == null ? "" : sTemp;
+                    rows++;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("fail");
+            }
+        }
+
+        return data;
     }
 }

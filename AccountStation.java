@@ -89,4 +89,15 @@ public class AccountStation extends Station {
         accessCenter.db.showRentHistory(cardnumber,qint);   //顯示租借紀錄
     }
 
+    /**
+     *
+     * @param cardnumber
+     * @param qint
+     */
+    public Object[][] getRentalRecords(String cardnumber, int qint) {
+        // TODO implement here
+        //System.out.println("getRentalRecords");
+        return accessCenter.db.getRentHistory(cardnumber, qint);   //顯示租借紀錄
+    }
+
 }
