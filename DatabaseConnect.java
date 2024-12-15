@@ -31,26 +31,26 @@ public class DatabaseConnect {
         createMemberInfoTable();
         createRentalRecordTable();
 
-        String sql = "select * from " + DB_MEMBER;
-        try {
-            con = DriverManager.getConnection(DB_URL, DB_UID, DB_PWD);
-            st = con.createStatement();
-            re = st.executeQuery(sql);
-            System.out.println(re);
-            System.out.println("性名                  電話       密碼             卡號");
-            System.out.println("==================== ========== =============== ==========");
-            while(re.next()) {
-                String mr = re.getString(1);
-                String rd = re.getString(2);
-                String rl = re.getString(3);
-                String td = re.getString(4);
-                //String tl= re.getString(5);
-                System.out.println(mr+" "+rd+" "+rl+" "+td+" ");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("fail");
-        }
+//        String sql = "select * from " + DB_MEMBER;
+//        try {
+//            con = DriverManager.getConnection(DB_URL, DB_UID, DB_PWD);
+//            st = con.createStatement();
+//            re = st.executeQuery(sql);
+//            System.out.println(re);
+//            System.out.println("性名                  電話       密碼             卡號");
+//            System.out.println("==================== ========== =============== ==========");
+//            while(re.next()) {
+//                String mr = re.getString(1);
+//                String rd = re.getString(2);
+//                String rl = re.getString(3);
+//                String td = re.getString(4);
+//                //String tl= re.getString(5);
+//                System.out.println(mr+" "+rd+" "+rl+" "+td+" ");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            System.out.println("fail");
+//        }
 
 
         //showRentHistory("9999999999", 1);
